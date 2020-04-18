@@ -26,3 +26,7 @@ func set_mouse_position(position):
 
 func finish_tattoo():
 	dispatch("finish_tattoo", {})
+
+
+func next_client():
+	dispatch("next_client", {})

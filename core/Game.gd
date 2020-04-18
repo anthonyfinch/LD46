@@ -5,6 +5,7 @@ var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
 var _current_tattoo: Array = []
 var _previous_clients: Array = []
+var _state: String = ""
 
 
 func _init(state: Dictionary)-> void:
@@ -12,6 +13,7 @@ func _init(state: Dictionary)-> void:
 	_mouse_position = state.get("mouse_position", Vector2(0, 0))
 	_current_tattoo = state.get("current_tattoo", [])
 	_previous_clients = state.get("previous_clients", [])
+	_state = state.get("state", "tattooing")
 
 
 func get_state() -> Dictionary:
@@ -19,7 +21,8 @@ func get_state() -> Dictionary:
 		"gun_on": _gun_on,
 		"mouse_position": _mouse_position,
 		"current_tattoo": _current_tattoo,
-		"previous_clients": _previous_clients
+		"previous_clients": _previous_clients,
+		"state": _state
 	}
 
 
@@ -43,5 +46,10 @@ func handle_set_mouse_position(payload: Dictionary)-> void:
 
 
 func handle_finish_tattoo(payload: Dictionary)-> void:
+	_state = "scoring"
+
+
+func handle_next_client(payload: Dictionary)-> void:
 	_previous_clients.push_back(_current_tattoo)
 	_current_tattoo = []
+	_state = "tattooing"

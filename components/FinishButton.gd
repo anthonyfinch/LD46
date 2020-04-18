@@ -7,4 +7,4 @@ func _ready():
 
 
 func handle_button_press():
-	_actions.next_client()
+	_actions.finish_tattoo()
