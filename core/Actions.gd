@@ -22,3 +22,7 @@ func gun_off():
 
 func set_mouse_position(position):
 	dispatch("set_mouse_position", {"position": position})
+
+
+func finish_tattoo():
+	dispatch("finish_tattoo", {})

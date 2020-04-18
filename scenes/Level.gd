@@ -8,8 +8,6 @@ onready var _input = get_node("Input")
 var _actions: Actions = null
 
 
-var _g = false
-
 func _ready():
 	var state = {}
 	var machine = Game.new(state)
@@ -32,8 +30,4 @@ func _process(delta):
 
 
 func handle_change(state):
-	# print(state["current_tattoo"])
-	var gon = state["gun_on"]
-	if gon != _g:
-		print(gon)
-		_g = gon
+	pass

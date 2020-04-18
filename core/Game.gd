@@ -4,19 +4,22 @@ extends StateMachine
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
 var _current_tattoo: Array = []
+var _previous_clients: Array = []
 
 
 func _init(state: Dictionary)-> void:
 	_gun_on = state.get("gun_on", false)
 	_mouse_position = state.get("mouse_position", Vector2(0, 0))
 	_current_tattoo = state.get("current_tattoo", [])
+	_previous_clients = state.get("previous_clients", [])
 
 
 func get_state() -> Dictionary:
 	return {
 		"gun_on": _gun_on,
 		"mouse_position": _mouse_position,
-		"current_tattoo": _current_tattoo
+		"current_tattoo": _current_tattoo,
+		"previous_clients": _previous_clients
 	}
 
 
@@ -37,3 +40,8 @@ func handle_gun_off(payload: Dictionary)-> void:
 
 func handle_set_mouse_position(payload: Dictionary)-> void:
 	_mouse_position = payload["position"]
+
+
+func handle_finish_tattoo(payload: Dictionary)-> void:
+	_previous_clients.push_back(_current_tattoo)
+	_current_tattoo = []

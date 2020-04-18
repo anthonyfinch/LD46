@@ -8,6 +8,8 @@ func _input(event):
 	if (event.is_action_pressed("ui_cancel")):
 		get_tree().quit()
 
+
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
