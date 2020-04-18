@@ -5,10 +5,10 @@
 [ext_resource path="res://scenes/LevelView.gd" type="Script" id=3]
 [ext_resource path="res://components/mockup-button.png" type="Texture" id=4]
 [ext_resource path="res://components/FinishButton.gd" type="Script" id=5]
-[ext_resource path="res://components/NextButton.gd" type="Script" id=6]
-[ext_resource path="res://components/TattooSkin.gd" type="Script" id=7]
+[ext_resource path="res://components/mockup-frame.png" type="Texture" id=6]
+[ext_resource path="res://components/NextButton.gd" type="Script" id=7]
 [ext_resource path="res://components/mockup-person.png" type="Texture" id=8]
-[ext_resource path="res://components/mockup-frame.png" type="Texture" id=9]
+[ext_resource path="res://components/TattooSkin.gd" type="Script" id=9]
 [ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=10]
 [ext_resource path="res://components/Tattoo.gd" type="Script" id=11]
 [ext_resource path="res://components/TattooCopy.gd" type="Script" id=12]
@@ -31,30 +31,26 @@ margin_bottom = 718.568
 mouse_filter = 2
 color = Color( 0.211765, 0.552941, 0.701961, 1 )
 
-[node name="FinishButton" type="TextureButton" parent="View"]
+[node name="Tattooing" type="Node2D" parent="View"]
+
+[node name="FinishButton" type="TextureButton" parent="View/Tattooing"]
+editor/display_folded = true
 margin_left = 731.738
 margin_top = 438.184
 margin_right = 1082.74
 margin_bottom = 631.184
 texture_normal = ExtResource( 4 )
 
-[node name="Handler" type="Node2D" parent="View/FinishButton"]
+[node name="Handler" type="Node2D" parent="View/Tattooing/FinishButton"]
 script = ExtResource( 5 )
 
-[node name="NextButton" type="TextureButton" parent="View"]
-margin_left = 731.738
-margin_top = 438.184
-margin_right = 1082.74
-margin_bottom = 631.184
-texture_normal = ExtResource( 4 )
+[node name="Scoring" type="Node2D" parent="View"]
 
-[node name="Handler" type="Node2D" parent="View/NextButton"]
-script = ExtResource( 6 )
+[node name="TattooDone" type="Sprite" parent="View/Scoring"]
+position = Vector2( 383.769, 226.252 )
+texture = ExtResource( 6 )
 
-[node name="TattooSkin" type="Node2D" parent="View"]
-script = ExtResource( 7 )
-
-[node name="Score" type="Label" parent="View"]
+[node name="Score" type="Label" parent="View/Scoring"]
 margin_left = 473.616
 margin_top = 446.592
 margin_right = 821.616
@@ -64,13 +60,30 @@ text = "SCORE: 2/3
 align = 1
 valign = 1
 
-[node name="Person" type="Sprite" parent="View"]
+[node name="NextButton" type="TextureButton" parent="View/Scoring"]
+editor/display_folded = true
+margin_left = 731.738
+margin_top = 438.184
+margin_right = 1082.74
+margin_bottom = 631.184
+texture_normal = ExtResource( 4 )
+
+[node name="Handler" type="Node2D" parent="View/Scoring/NextButton"]
+script = ExtResource( 7 )
+
+[node name="Client" type="Sprite" parent="View"]
+editor/display_folded = true
 position = Vector2( 372.072, 360.383 )
 texture = ExtResource( 8 )
 
+[node name="TattooSkin" type="Node2D" parent="View/Client"]
+position = Vector2( -372.072, -360.383 )
+script = ExtResource( 9 )
+
 [node name="TattooPlan" type="Sprite" parent="View"]
+editor/display_folded = true
 position = Vector2( 898.037, 222.074 )
-texture = ExtResource( 9 )
+texture = ExtResource( 6 )
 
 [node name="Tattoo" type="Sprite" parent="View/TattooPlan"]
 texture = ExtResource( 10 )
@@ -82,7 +95,3 @@ script = ExtResource( 11 )
 
 [node name="Handler" type="Node2D" parent="View/TattooPlan/TattooCopy"]
 script = ExtResource( 12 )
-
-[node name="TattooDone" type="Sprite" parent="View"]
-position = Vector2( 383.769, 226.252 )
-texture = ExtResource( 9 )

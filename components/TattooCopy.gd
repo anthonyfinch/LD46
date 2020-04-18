@@ -71,5 +71,5 @@ func on_state_changed(state: Dictionary)-> void:
 						if actual.a > 0:
 							correct += 1
 
-			print(float(correct) / float(total_pixels) * 100)
+			print("Score: ", float(correct) / float(total_pixels) * 100)
 
