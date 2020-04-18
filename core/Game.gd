@@ -3,6 +3,7 @@ extends StateMachine
 
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
+var _tattoo_design: Array = []
 var _current_tattoo: Array = []
 var _previous_clients: Array = []
 var _state: String = ""
@@ -11,6 +12,7 @@ var _state: String = ""
 func _init(state: Dictionary)-> void:
 	_gun_on = state.get("gun_on", false)
 	_mouse_position = state.get("mouse_position", Vector2(0, 0))
+	_tattoo_design
 	_current_tattoo = state.get("current_tattoo", [])
 	_previous_clients = state.get("previous_clients", [])
 	_state = state.get("state", "tattooing")

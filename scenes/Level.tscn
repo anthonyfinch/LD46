@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://core/Input.gd" type="Script" id=2]
@@ -8,7 +8,9 @@
 [ext_resource path="res://components/NextButton.gd" type="Script" id=6]
 [ext_resource path="res://components/TattooSkin.gd" type="Script" id=7]
 [ext_resource path="res://components/mockup-person.png" type="Texture" id=8]
-[ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=9]
+[ext_resource path="res://components/mockup-frame.png" type="Texture" id=9]
+[ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=10]
+[ext_resource path="res://components/TattooCopy.gd" type="Script" id=11]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -39,10 +41,10 @@ texture_normal = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="NextButton" type="TextureButton" parent="View"]
-margin_left = 933.721
-margin_top = 519.58
-margin_right = 1284.72
-margin_bottom = 712.58
+margin_left = 731.738
+margin_top = 438.184
+margin_right = 1082.74
+margin_bottom = 631.184
 texture_normal = ExtResource( 4 )
 
 [node name="Handler" type="Node2D" parent="View/NextButton"]
@@ -68,6 +70,14 @@ texture = ExtResource( 8 )
 [node name="TattooPlan" type="Sprite" parent="View"]
 position = Vector2( 898.037, 222.074 )
 texture = ExtResource( 9 )
+
+[node name="Tattoo" type="Sprite" parent="View/TattooPlan"]
+texture = ExtResource( 10 )
+
+[node name="TattooCopy" type="Sprite" parent="View/TattooPlan"]
+
+[node name="Handler" type="Node2D" parent="View/TattooPlan/TattooCopy"]
+script = ExtResource( 11 )
 
 [node name="TattooDone" type="Sprite" parent="View"]
 position = Vector2( 383.769, 226.252 )

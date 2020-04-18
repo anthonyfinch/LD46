@@ -13,4 +13,4 @@ func on_state_changed(state: Dictionary)-> void:
 
 func _draw():
 	for point in _tattoo:
-		draw_rect(Rect2(point, Vector2(4,4)), Color(0, 0, 0))
+		draw_rect(Rect2(point - Vector2(4,4), Vector2(4,4)), Color(0, 0, 0))
