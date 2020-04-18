@@ -4,8 +4,11 @@ extends Node
 const Store = preload('res://lib/Store.gd')
 const Actions = preload('res://core/Actions.gd')
 const Game = preload('res://core/Game.gd')
+onready var _input = get_node("Input")
 var _actions: Actions = null
 
+
+var _g = false
 
 func _ready():
 	var state = {}
@@ -19,6 +22,8 @@ func _ready():
 	_actions.store = store
 	ServiceRegister.register("actions", _actions)
 
+	_input.actions = _actions
+
 	store.subscribe(self, "handle_change")
 
 
@@ -27,4 +32,8 @@ func _process(delta):
 
 
 func handle_change(state):
-	print("state changed")
+	# print(state["current_tattoo"])
+	var gon = state["gun_on"]
+	if gon != _g:
+		print(gon)
+		_g = gon
