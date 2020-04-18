@@ -30,33 +30,6 @@ func on_state_changed(state: Dictionary)-> void:
 			var width = highest.x - lowest.x
 			var height = highest.y - lowest.y
 
-			# var matrix = []
-			# matrix.resize(height + 1)
-			# var column_proto = []
-			# column_proto.resize(width + 1)
-
-			# for y in range(height + 1):
-			# 	matrix[y] = column_proto.duplicate()
-
-			# for point in current_tattoo:
-			# 	var x = point.x - lowest.x
-			# 	var y = point.y - lowest.y
-			# 	matrix[y][x] = true
-
-			# var buffer = PoolByteArray()
-
-			# for y in range(height + 1):
-			# 	for x in range(width + 1):
-			# 		var value = matrix[y][x]
-			# 		buffer.push_back(0)
-			# 		buffer.push_back(0)
-			# 		buffer.push_back(0)
-			# 		if value != null:
-			# 			buffer.push_back(255)
-			# 		else:
-			# 			buffer.push_back(0)
-
-
 			image = Image.new()
 			image.create(width + 1, height + 1, false, Image.FORMAT_RGBA8)
 			image.lock()
@@ -79,12 +52,6 @@ func on_state_changed(state: Dictionary)-> void:
 			var tex = ImageTexture.new()
 			tex.create_from_image(image)
 
-			# var p_b = PoolByteArray(buffer)
-			# for b in p_b:
-			# 	print(b)
-			# var err = image.load_png_from_buffer(buffer)
-			# print(err)
-
 			_parent_node.texture = tex
 
 			var total_pixels = 0
@@ -104,8 +71,5 @@ func on_state_changed(state: Dictionary)-> void:
 						if actual.a > 0:
 							correct += 1
 
-			print(correct)
-			print(total_pixels)
 			print(float(correct) / float(total_pixels) * 100)
-			print("COrrect: ", correct / total_pixels * 100)
 
