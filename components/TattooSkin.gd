@@ -1,13 +1,14 @@
 extends Component
 
 
-const Ink = preload("res://components/Ink.tscn")
 var _tattoo: Array = []
 
 
 func on_state_changed(state: Dictionary)-> void:
-	_tattoo = state["current_tattoo"]
-	update()
+	var current_tattoo = state["current_tattoo"]
+	if _tattoo.size() != current_tattoo.size():
+		_tattoo = state["current_tattoo"].duplicate()
+		update()
 
 
 func _draw():
