@@ -85,14 +85,27 @@ func _choose_tattoo():
 
 func _get_tattoos():
 	var dir = Directory.new()
-	var tattoos = []
-	if dir.open("res://tattoos/") == OK:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while (file_name != ""):
-			if file_name != "." and file_name != ".." and not file_name.ends_with("import"):
-				tattoos.push_back("res://tattoos/" + file_name)
-			file_name = dir.get_next()
+	# var tattoos = []
+	var tattoos = [
+		"res://tattoos/anchor.png",
+		"res://tattoos/cross.png",
+		"res://tattoos/heart.png",
+		"res://tattoos/reeds.png",
+		"res://tattoos/snake.png",
+		"res://tattoos/book.png",
+		"res://tattoos/eye.png",
+		"res://tattoos/penta.png",
+		"res://tattoos/skull.png",
+		"res://tattoos/tear.png"
+	]
+
+	# if dir.open("res://tattoos/") == OK:
+	# 	dir.list_dir_begin()
+	# 	var file_name = dir.get_next()
+	# 	while (file_name != ""):
+	# 		if file_name != "." and file_name != ".." and not file_name.ends_with("import"):
+	# 			tattoos.push_back("res://tattoos/" + file_name)
+	# 		file_name = dir.get_next()
 
 	return tattoos
 
