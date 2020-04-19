@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/cute.tres" type="DynamicFontData" id=1]
-[ext_resource path="res://components/start-button.png" type="Texture" id=2]
-[ext_resource path="res://components/start-button-press.png" type="Texture" id=3]
-[ext_resource path="res://components/StartButton.gd" type="Script" id=4]
+[ext_resource path="res://components/End.gd" type="Script" id=2]
+[ext_resource path="res://components/start-button.png" type="Texture" id=3]
+[ext_resource path="res://components/start-button-press.png" type="Texture" id=4]
+[ext_resource path="res://components/StartButton.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -24,6 +25,7 @@ margin_bottom = 349.223
 custom_fonts/font = SubResource( 1 )
 text = "Well, you only made 3 pounds. So that sucks.
 "
+script = ExtResource( 2 )
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 85.1284
@@ -40,7 +42,7 @@ margin_left = 486.712
 margin_top = 442.298
 margin_right = 791.712
 margin_bottom = 649.298
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 3 )
-script = ExtResource( 4 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+script = ExtResource( 5 )

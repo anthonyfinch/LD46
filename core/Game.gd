@@ -7,8 +7,8 @@ const MAX_MONEY = 800
 const SEC_PER_HOUR = 60  # Time dilation!
 const CLOCK_SPEED = 5
 const DAY_START = 10 * SEC_PER_HOUR
-const DAY_END = 10.2 * SEC_PER_HOUR
-const TOTAL_DAYS = 2
+const DAY_END = 14 * SEC_PER_HOUR
+const TOTAL_DAYS = 7
 
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
@@ -36,7 +36,7 @@ func _init(state: Dictionary)-> void:
 	_previous_clients = state.get("previous_clients", [])
 	_state = state.get("state", "tattooing")
 	_money = state.get("money", 0)
-	_day = state.get("day", SharedData.day)
+	_day = state.get("day", 1)
 	_time = state.get("time", DAY_START)
 	_client_name = state.get("client_name", "")
 	_tattoo_price = state.get("tattoo_price", MIN_MONEY)
@@ -213,6 +213,7 @@ func handle_next_day(payload: Dictionary)-> void:
 		"end":
 			_day += 1
 			if _day > TOTAL_DAYS:
+				SharedData.money = _money
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				ServiceRegister.clear()
 				SceneSwitcher.goto_scene("res://scenes/End.tscn")
