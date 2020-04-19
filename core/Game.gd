@@ -7,7 +7,7 @@ const MAX_MONEY = 800
 const SEC_PER_HOUR = 60  # Time dilation!
 const CLOCK_SPEED = 5
 const DAY_START = 10 * SEC_PER_HOUR
-const DAY_END = 11 * SEC_PER_HOUR
+const DAY_END = 20 * SEC_PER_HOUR
 
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
