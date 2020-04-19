@@ -30,3 +30,7 @@ func finish_tattoo():
 
 func next_client():
 	dispatch("next_client", {})
+
+
+func next_day():
+	dispatch("next_day", {})

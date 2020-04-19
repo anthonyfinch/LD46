@@ -4,6 +4,10 @@ extends StateMachine
 const Names = preload("res://core/Names.gd")
 const MIN_MONEY = 40
 const MAX_MONEY = 800
+const SEC_PER_HOUR = 60  # Time dilation!
+const CLOCK_SPEED = 5
+const DAY_START = 10 * SEC_PER_HOUR
+const DAY_END = 11 * SEC_PER_HOUR
 
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
@@ -16,8 +20,10 @@ var _design_image: Image = null
 var _current_tattoo_image: Image = null
 var _tattoo_price: int = MIN_MONEY
 var _money: int = 0
+var _day: int = 1
 var _client_name: String = ""
-var _time: int = 0
+var _time: float = DAY_START
+var _time_display: String = ""
 var _score: int = 0
 
 
@@ -28,11 +34,17 @@ func _init(state: Dictionary)-> void:
 	_previous_clients = state.get("previous_clients", [])
 	_state = state.get("state", "tattooing")
 	_money = state.get("money", 0)
-	_time = state.get("time", 0)
+	_day = state.get("day", SharedData.day)
+	_time = state.get("time", DAY_START)
 	_client_name = state.get("client_name", "")
 	_tattoo_price = state.get("tattoo_price", MIN_MONEY)
 	_tattoos = state.get("tattoos", _get_tattoos())
 	_choose_tattoo()
+	_set_time_display()
+
+
+func _reset():
+	_time = DAY_START
 
 
 func get_state() -> Dictionary:
@@ -45,9 +57,11 @@ func get_state() -> Dictionary:
 		"current_tattoo_design": _current_tattoo_design,
 		"current_tattoo_image": _current_tattoo_image,
 		"money": _money,
+		"day": _day,
 		"time": _time,
 		"client_name": _client_name,
 		"tattoo_price": _tattoo_price,
+		"time_display": _time_display,
 		"score": _score,
 		"state": _state
 	}
@@ -81,19 +95,39 @@ func _get_tattoos():
 	return tattoos
 
 
+func _set_time_display():
+	var hours = _time / SEC_PER_HOUR
+	var minutes = fmod(_time, SEC_PER_HOUR)
+	var min_string = String(floor(minutes))
+	if minutes < 10:
+		min_string = "0" + min_string
+	_time_display = String(floor(hours)) + ":" + min_string
+
+
 func handle_update(payload: Dictionary)-> void:
 	var delta = payload["delta"]
-	if _gun_on:
-		if not _current_tattoo.has(_mouse_position):
-			_current_tattoo.push_back(_mouse_position)
+
+	if not ["start", "end"].has(_state):
+		_time += delta * CLOCK_SPEED
+		_set_time_display()
+
+	if _time >= DAY_END:
+		_state = "end"
+
+	if _state == "tattooing":
+		if _gun_on:
+			if not _current_tattoo.has(_mouse_position):
+				_current_tattoo.push_back(_mouse_position)
 
 
 func handle_gun_on(payload: Dictionary)-> void:
-	_gun_on = true
+	if _state == "tattooing":
+		_gun_on = true
 
 
 func handle_gun_off(payload: Dictionary)-> void:
-	_gun_on = false
+	if _state == "tattooing":
+		_gun_on = false
 
 
 func handle_set_mouse_position(payload: Dictionary)-> void:
@@ -161,7 +195,20 @@ func handle_finish_tattoo(payload: Dictionary)-> void:
 
 
 func handle_next_client(payload: Dictionary)-> void:
-	_previous_clients.push_back(_current_tattoo)
-	_current_tattoo = []
+	if _current_tattoo.size() > 0:
+		_previous_clients.push_back(_current_tattoo)
+		_current_tattoo = []
 	_choose_tattoo()
 	_state = "tattooing"
+
+
+func handle_next_day(payload: Dictionary)-> void:
+	print(_state)
+	match _state:
+		"end":
+			_day += 1
+			_state = "start"
+			_reset()
+
+		"start":
+			handle_next_client({})

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://core/Input.gd" type="Script" id=2]
@@ -13,9 +13,12 @@
 [ext_resource path="res://components/TattooSkin.gd" type="Script" id=11]
 [ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=12]
 [ext_resource path="res://components/Tattoo.gd" type="Script" id=13]
-[ext_resource path="res://components/MoneyDisplay.gd" type="Script" id=14]
-[ext_resource path="res://components/PriceDisplay.gd" type="Script" id=15]
-[ext_resource path="res://components/ClientNameDisplay.gd" type="Script" id=16]
+[ext_resource path="res://components/TimeDisplay.gd" type="Script" id=14]
+[ext_resource path="res://components/DayDisplay.gd" type="Script" id=15]
+[ext_resource path="res://components/MoneyDisplay.gd" type="Script" id=16]
+[ext_resource path="res://components/PriceDisplay.gd" type="Script" id=17]
+[ext_resource path="res://components/ClientNameDisplay.gd" type="Script" id=18]
+[ext_resource path="res://components/NextDayButton.gd" type="Script" id=19]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -38,7 +41,6 @@ color = Color( 0.211765, 0.552941, 0.701961, 1 )
 [node name="Tattooing" type="Node2D" parent="View"]
 
 [node name="FinishButton" type="TextureButton" parent="View/Tattooing"]
-editor/display_folded = true
 margin_left = 731.738
 margin_top = 438.184
 margin_right = 1082.74
@@ -49,12 +51,15 @@ texture_normal = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Scoring" type="Node2D" parent="View"]
+editor/display_folded = true
 
 [node name="TattooDone" type="Sprite" parent="View/Scoring"]
 position = Vector2( 383.769, 226.252 )
 texture = ExtResource( 6 )
 
-[node name="Handler" type="Node2D" parent="View/Scoring/TattooDone"]
+[node name="Sprite" type="Sprite" parent="View/Scoring/TattooDone"]
+
+[node name="Handler" type="Node2D" parent="View/Scoring/TattooDone/Sprite"]
 script = ExtResource( 7 )
 
 [node name="Score" type="Label" parent="View/Scoring"]
@@ -91,6 +96,7 @@ position = Vector2( -372.072, -360.383 )
 script = ExtResource( 11 )
 
 [node name="TattooPlan" type="Sprite" parent="View"]
+editor/display_folded = true
 position = Vector2( 898.037, 222.074 )
 texture = ExtResource( 6 )
 
@@ -100,32 +106,54 @@ texture = ExtResource( 12 )
 [node name="Component" type="Node2D" parent="View/TattooPlan/Tattoo"]
 script = ExtResource( 13 )
 
+[node name="Time" type="Label" parent="View"]
+editor/display_folded = true
+margin_left = 8.6759
+margin_top = 13.4349
+margin_right = 48.6759
+margin_bottom = 27.4349
+
+[node name="Handler" type="Node2D" parent="View/Time"]
+script = ExtResource( 14 )
+
+[node name="Day" type="Label" parent="View"]
+margin_left = 12.1921
+margin_top = 89.0327
+margin_right = 52.1921
+margin_bottom = 103.033
+
+[node name="Handler" type="Node2D" parent="View/Day"]
+script = ExtResource( 15 )
+
 [node name="Money" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 12.0
 margin_top = 50.0
 margin_right = 52.0
 margin_bottom = 64.0
 
 [node name="Handler" type="Node2D" parent="View/Money"]
-script = ExtResource( 14 )
+script = ExtResource( 16 )
 
 [node name="Price" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 830.0
 margin_top = 346.0
 margin_right = 870.0
 margin_bottom = 360.0
 
 [node name="Handler" type="Node2D" parent="View/Price"]
-script = ExtResource( 15 )
+script = ExtResource( 17 )
 
 [node name="Client Name" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 708.117
 margin_top = 53.4792
 margin_right = 748.117
 margin_bottom = 67.4792
 
 [node name="Handler" type="Node2D" parent="View/Client Name"]
-script = ExtResource( 16 )
+script = ExtResource( 18 )
 
 [node name="LevelStart" type="Node2D" parent="View"]
 visible = false
@@ -137,7 +165,35 @@ margin_bottom = 718.568
 mouse_filter = 2
 color = Color( 0.164706, 0.223529, 0.25098, 1 )
 
+[node name="Label" type="Label" parent="View/LevelStart"]
+margin_left = 603.024
+margin_top = 268.987
+margin_right = 659.024
+margin_bottom = 299.987
+text = "New Day
+"
+
+[node name="NextDayButton" type="TextureButton" parent="View/LevelStart"]
+margin_left = 473.299
+margin_top = 432.91
+margin_right = 824.301
+margin_bottom = 625.91
+texture_normal = ExtResource( 4 )
+
+[node name="Handler" type="Node2D" parent="View/LevelStart/NextDayButton"]
+script = ExtResource( 19 )
+
+[node name="Day" type="Label" parent="View/LevelStart"]
+margin_left = 611.7
+margin_top = 307.036
+margin_right = 651.7
+margin_bottom = 321.036
+
+[node name="Handler" type="Node2D" parent="View/LevelStart/Day"]
+script = ExtResource( 15 )
+
 [node name="LevelEnd" type="Node2D" parent="View"]
+editor/display_folded = true
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="View/LevelEnd"]
@@ -146,3 +202,32 @@ margin_right = 1280.0
 margin_bottom = 718.568
 mouse_filter = 2
 color = Color( 0.0941176, 0.117647, 0.12549, 1 )
+
+[node name="Label" type="Label" parent="View/LevelEnd"]
+margin_left = 592.798
+margin_top = 327.978
+margin_right = 667.798
+margin_bottom = 358.978
+text = "Day Is Over
+"
+
+[node name="NextDayButton" type="TextureButton" parent="View/LevelEnd"]
+margin_left = 473.299
+margin_top = 432.91
+margin_right = 824.301
+margin_bottom = 625.91
+texture_normal = ExtResource( 4 )
+
+[node name="Handler" type="Node2D" parent="View/LevelEnd/NextDayButton"]
+script = ExtResource( 19 )
+
+[node name="Money" type="Label" parent="View/LevelEnd"]
+margin_left = 604.986
+margin_top = 384.488
+margin_right = 679.986
+margin_bottom = 415.488
+text = "Day Is Over
+"
+
+[node name="Handler" type="Node2D" parent="View/LevelEnd/Money"]
+script = ExtResource( 16 )

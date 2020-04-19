@@ -46,6 +46,7 @@ config/icon="res://icon.png"
 
 ServiceRegister="*res://lib/ServiceRegister.gd"
 SceneSwitcher="*res://lib/SceneSwitcher.gd"
+SharedData="*res://core/SharedData.gd"
 
 [display]
 
