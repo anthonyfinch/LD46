@@ -34,7 +34,7 @@ func _init(state: Dictionary)-> void:
 	_mouse_position = state.get("mouse_position", Vector2(0, 0))
 	_current_tattoo = state.get("current_tattoo", [])
 	_previous_clients = state.get("previous_clients", [])
-	_state = state.get("state", "tattooing")
+	_state = state.get("state", "start")
 	_money = state.get("money", 0)
 	_day = state.get("day", 1)
 	_time = state.get("time", DAY_START)
