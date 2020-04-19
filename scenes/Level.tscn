@@ -126,3 +126,23 @@ margin_bottom = 67.4792
 
 [node name="Handler" type="Node2D" parent="View/Client Name"]
 script = ExtResource( 16 )
+
+[node name="LevelStart" type="Node2D" parent="View"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="View/LevelStart"]
+margin_top = -1.43198
+margin_right = 1280.0
+margin_bottom = 718.568
+mouse_filter = 2
+color = Color( 0.164706, 0.223529, 0.25098, 1 )
+
+[node name="LevelEnd" type="Node2D" parent="View"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="View/LevelEnd"]
+margin_top = -1.43198
+margin_right = 1280.0
+margin_bottom = 718.568
+mouse_filter = 2
+color = Color( 0.0941176, 0.117647, 0.12549, 1 )
