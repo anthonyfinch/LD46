@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heart.png-8fee99cac26a0f6dda0ded96a8162478.stex"
+path="res://.import/eye.png-f0b529b85b91ddee9d82ee6665418e69.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tattoos/heart.png"
-dest_files=[ "res://.import/heart.png-8fee99cac26a0f6dda0ded96a8162478.stex" ]
+source_file="res://tattoos/eye.png"
+dest_files=[ "res://.import/eye.png-f0b529b85b91ddee9d82ee6665418e69.stex" ]
 
 [params]
 

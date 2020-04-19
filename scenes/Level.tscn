@@ -112,7 +112,6 @@ script = ExtResource( 8 )
 [node name="Tattooing" type="Node2D" parent="View"]
 
 [node name="TattooPlan" type="Node2D" parent="View/Tattooing"]
-editor/display_folded = true
 position = Vector2( 898.037, 222.074 )
 
 [node name="Paper1" type="Sprite" parent="View/Tattooing/TattooPlan"]
@@ -131,6 +130,7 @@ flip_h = true
 
 [node name="Tattoo" type="Sprite" parent="View/Tattooing/TattooPlan"]
 position = Vector2( 135.285, 78.4986 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 10 )
 
 [node name="Component" type="Node2D" parent="View/Tattooing/TattooPlan/Tattoo"]

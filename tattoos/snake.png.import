@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heart.png-8fee99cac26a0f6dda0ded96a8162478.stex"
+path="res://.import/snake.png-16e7b8dd4ab4d7f7243383e73f5a83a6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tattoos/heart.png"
-dest_files=[ "res://.import/heart.png-8fee99cac26a0f6dda0ded96a8162478.stex" ]
+source_file="res://tattoos/snake.png"
+dest_files=[ "res://.import/snake.png-16e7b8dd4ab4d7f7243383e73f5a83a6.stex" ]
 
 [params]
 
