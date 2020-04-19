@@ -1,0 +1,60 @@
+extends Object
+
+static func get_name():
+	var names = [
+		"Allyson",
+		"Christin",
+		"Filiberto",
+		"Ana",
+		"Etta",
+		"Vannesa",
+		"Lakeshia",
+		"Kasie",
+		"Deadra",
+		"Lilly",
+		"Marlena",
+		"Rayford",
+		"Lynell",
+		"Lissette",
+		"Noreen",
+		"Syreeta",
+		"Claud",
+		"Janie",
+		"Alejandrina",
+		"Zetta",
+		"Tamica",
+		"Charles",
+		"Serena",
+		"Lanita",
+		"Ian",
+		"Deeann",
+		"Hui",
+		"Erica",
+		"Ja",
+		"Dahlia",
+		"Amie",
+		"Bobbie",
+		"Dione",
+		"Jenine",
+		"Kristopher",
+		"Rosenda",
+		"Arnoldo",
+		"Ira",
+		"Chantell",
+		"Louvenia",
+		"Nickie",
+		"Delois",
+		"Clement",
+		"Bernarda",
+		"Laci",
+		"Herbert",
+		"Vergie",
+		"Daniela",
+		"Ingeborg",
+		"Towanda"
+		]
+
+	var idx = round(rand_range(0, names.size()))
+	return names[idx]
+
+

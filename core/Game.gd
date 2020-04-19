@@ -1,6 +1,10 @@
 extends StateMachine
 
 
+const Names = preload("res://core/Names.gd")
+const MIN_MONEY = 40
+const MAX_MONEY = 800
+
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
 var _current_tattoo: Array = []
@@ -10,6 +14,11 @@ var _state: String = ""
 var _tattoos: Array = []
 var _design_image: Image = null
 var _current_tattoo_image: Image = null
+var _tattoo_price: int = MIN_MONEY
+var _money: int = 0
+var _client_name: String = ""
+var _time: int = 0
+var _score: int = 0
 
 
 func _init(state: Dictionary)-> void:
@@ -18,9 +27,12 @@ func _init(state: Dictionary)-> void:
 	_current_tattoo = state.get("current_tattoo", [])
 	_previous_clients = state.get("previous_clients", [])
 	_state = state.get("state", "tattooing")
+	_money = state.get("money", 0)
+	_time = state.get("time", 0)
+	_client_name = state.get("client_name", "")
+	_tattoo_price = state.get("tattoo_price", MIN_MONEY)
 	_tattoos = state.get("tattoos", _get_tattoos())
-	_current_tattoo_design = state.get("current_tattoo_design", _choose_tattoo())
-	_load_tattoo_design()
+	_choose_tattoo()
 
 
 func get_state() -> Dictionary:
@@ -32,17 +44,27 @@ func get_state() -> Dictionary:
 		"tattoos": _tattoos,
 		"current_tattoo_design": _current_tattoo_design,
 		"current_tattoo_image": _current_tattoo_image,
+		"money": _money,
+		"time": _time,
+		"client_name": _client_name,
+		"tattoo_price": _tattoo_price,
+		"score": _score,
 		"state": _state
 	}
 
 
 func _choose_tattoo():
-	var idx = rand_range(0, _tattoos.size())
-	return _tattoos[idx]
+	var idx = round(rand_range(0, _tattoos.size() - 1))
+	var tat = _tattoos[idx]
 
+	_current_tattoo_design = tat
+	_design_image = load(tat).get_data()
 
-func _load_tattoo_design():
-	_design_image = load(_current_tattoo_design).get_data()
+	_tattoo_price = round(rand_range(MIN_MONEY, MAX_MONEY))
+	_client_name = Names.get_name()
+	print(_client_name)
+
+	return tat
 
 
 func _get_tattoos():
@@ -133,11 +155,13 @@ func handle_finish_tattoo(payload: Dictionary)-> void:
 					if actual.a > 0:
 						correct += 1
 
-		print("Score: ", float(correct) / float(total_pixels) * 100)
-
+		var pc = float(correct) / float(total_pixels)
+		_score =  pc * 100
+		_money += pc * _tattoo_price
 
 
 func handle_next_client(payload: Dictionary)-> void:
 	_previous_clients.push_back(_current_tattoo)
 	_current_tattoo = []
+	_choose_tattoo()
 	_state = "tattooing"

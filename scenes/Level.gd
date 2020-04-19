@@ -9,6 +9,7 @@ var _actions: Actions = null
 
 
 func _ready():
+	randomize()
 	var state = {}
 	var machine = Game.new(state)
 	var store = Store.new()
