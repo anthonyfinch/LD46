@@ -25,6 +25,7 @@ var _client_name: String = ""
 var _time: float = DAY_START
 var _time_display: String = ""
 var _score: int = 0
+var _client_info: Dictionary = {}
 
 
 func _init(state: Dictionary)-> void:
@@ -39,6 +40,8 @@ func _init(state: Dictionary)-> void:
 	_client_name = state.get("client_name", "")
 	_tattoo_price = state.get("tattoo_price", MIN_MONEY)
 	_tattoos = state.get("tattoos", _get_tattoos())
+	_client_info = state["client"]
+	print(_client_info)
 	_choose_tattoo()
 	_set_time_display()
 
@@ -112,6 +115,7 @@ func handle_update(payload: Dictionary)-> void:
 		_set_time_display()
 
 	if _time >= DAY_END:
+		_gun_on = false
 		_state = "end"
 
 	if _state == "tattooing":

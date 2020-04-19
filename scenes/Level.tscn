@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://core/Input.gd" type="Script" id=2]
@@ -6,28 +6,29 @@
 [ext_resource path="res://components/bg.png" type="Texture" id=4]
 [ext_resource path="res://components/door.png" type="Texture" id=5]
 [ext_resource path="res://components/people/person-1.png" type="Texture" id=6]
-[ext_resource path="res://components/TattooSkin.gd" type="Script" id=7]
-[ext_resource path="res://components/finish-button.png" type="Texture" id=8]
-[ext_resource path="res://components/finish-button-press.png" type="Texture" id=9]
-[ext_resource path="res://components/FinishButton.gd" type="Script" id=10]
-[ext_resource path="res://components/mockup-frame.png" type="Texture" id=11]
-[ext_resource path="res://components/TattooDone.gd" type="Script" id=12]
-[ext_resource path="res://components/ScoreDisplay.gd" type="Script" id=13]
-[ext_resource path="res://components/next-button.png" type="Texture" id=14]
-[ext_resource path="res://components/next-button-press.png" type="Texture" id=15]
-[ext_resource path="res://components/NextButton.gd" type="Script" id=16]
-[ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=17]
-[ext_resource path="res://components/Tattoo.gd" type="Script" id=18]
-[ext_resource path="res://components/TimeDisplay.gd" type="Script" id=19]
-[ext_resource path="res://components/DayDisplay.gd" type="Script" id=20]
-[ext_resource path="res://components/MoneyDisplay.gd" type="Script" id=21]
-[ext_resource path="res://components/PriceDisplay.gd" type="Script" id=22]
-[ext_resource path="res://components/ClientNameDisplay.gd" type="Script" id=23]
-[ext_resource path="res://components/header.png" type="Texture" id=24]
-[ext_resource path="res://components/mockup-button.png" type="Texture" id=25]
-[ext_resource path="res://components/NextDayButton.gd" type="Script" id=26]
-[ext_resource path="res://components/gun.png" type="Texture" id=27]
-[ext_resource path="res://components/Gun.gd" type="Script" id=28]
+[ext_resource path="res://components/ClientHandler.gd" type="Script" id=7]
+[ext_resource path="res://components/TattooSkin.gd" type="Script" id=8]
+[ext_resource path="res://components/finish-button.png" type="Texture" id=9]
+[ext_resource path="res://components/finish-button-press.png" type="Texture" id=10]
+[ext_resource path="res://components/FinishButton.gd" type="Script" id=11]
+[ext_resource path="res://components/mockup-frame.png" type="Texture" id=12]
+[ext_resource path="res://components/TattooDone.gd" type="Script" id=13]
+[ext_resource path="res://components/ScoreDisplay.gd" type="Script" id=14]
+[ext_resource path="res://components/next-button.png" type="Texture" id=15]
+[ext_resource path="res://components/next-button-press.png" type="Texture" id=16]
+[ext_resource path="res://components/NextButton.gd" type="Script" id=17]
+[ext_resource path="res://components/mockup-tattoo.png" type="Texture" id=18]
+[ext_resource path="res://components/Tattoo.gd" type="Script" id=19]
+[ext_resource path="res://components/TimeDisplay.gd" type="Script" id=20]
+[ext_resource path="res://components/DayDisplay.gd" type="Script" id=21]
+[ext_resource path="res://components/MoneyDisplay.gd" type="Script" id=22]
+[ext_resource path="res://components/PriceDisplay.gd" type="Script" id=23]
+[ext_resource path="res://components/ClientNameDisplay.gd" type="Script" id=24]
+[ext_resource path="res://components/header.png" type="Texture" id=25]
+[ext_resource path="res://components/mockup-button.png" type="Texture" id=26]
+[ext_resource path="res://components/NextDayButton.gd" type="Script" id=27]
+[ext_resource path="res://components/gun.png" type="Texture" id=28]
+[ext_resource path="res://components/Gun.gd" type="Script" id=29]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -54,13 +55,18 @@ texture = ExtResource( 4 )
 position = Vector2( 640.28, 191.586 )
 texture = ExtResource( 5 )
 
-[node name="Client" type="Sprite" parent="View"]
-position = Vector2( 277.707, 348.287 )
+[node name="ClientContainer" type="Node2D" parent="View"]
+position = Vector2( 302.975, 352.717 )
+
+[node name="Client" type="Sprite" parent="View/ClientContainer"]
 scale = Vector2( 0.889636, 0.889636 )
 texture = ExtResource( 6 )
 
-[node name="TattooSkin" type="Node2D" parent="View/Client"]
+[node name="Handler" type="Node2D" parent="View/ClientContainer/Client"]
 script = ExtResource( 7 )
+
+[node name="TattooSkin" type="Node2D" parent="View/ClientContainer"]
+script = ExtResource( 8 )
 
 [node name="Tattooing" type="Node2D" parent="View"]
 
@@ -69,24 +75,24 @@ margin_left = 732.0
 margin_top = 438.0
 margin_right = 1037.0
 margin_bottom = 645.0
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 9 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
 
 [node name="Handler" type="Node2D" parent="View/Tattooing/FinishButton"]
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="Scoring" type="Node2D" parent="View"]
 visible = false
 
 [node name="TattooDone" type="Sprite" parent="View/Scoring"]
 position = Vector2( 383.769, 226.252 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="View/Scoring/TattooDone"]
 
 [node name="Handler" type="Node2D" parent="View/Scoring/TattooDone/Sprite"]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="Score" type="Label" parent="View/Scoring"]
 margin_left = 198.036
@@ -99,31 +105,31 @@ align = 1
 valign = 1
 
 [node name="Handler" type="Node2D" parent="View/Scoring/Score"]
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
 [node name="NextButton" type="TextureButton" parent="View/Scoring"]
 margin_left = 732.0
 margin_top = 438.0
 margin_right = 1037.0
 margin_bottom = 645.0
-texture_normal = ExtResource( 14 )
-texture_pressed = ExtResource( 15 )
-texture_hover = ExtResource( 15 )
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 16 )
 
 [node name="Handler" type="Node2D" parent="View/Scoring/NextButton"]
-script = ExtResource( 16 )
+script = ExtResource( 17 )
 
 [node name="TattooPlan" type="Sprite" parent="View"]
 editor/display_folded = true
 visible = false
 position = Vector2( 898.037, 222.074 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Tattoo" type="Sprite" parent="View/TattooPlan"]
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="Component" type="Node2D" parent="View/TattooPlan/Tattoo"]
-script = ExtResource( 18 )
+script = ExtResource( 19 )
 
 [node name="Time" type="Label" parent="View"]
 editor/display_folded = true
@@ -133,7 +139,7 @@ margin_right = 48.6759
 margin_bottom = 27.4349
 
 [node name="Handler" type="Node2D" parent="View/Time"]
-script = ExtResource( 19 )
+script = ExtResource( 20 )
 
 [node name="Day" type="Label" parent="View"]
 margin_left = 12.1921
@@ -142,7 +148,7 @@ margin_right = 52.1921
 margin_bottom = 103.033
 
 [node name="Handler" type="Node2D" parent="View/Day"]
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 
 [node name="Money" type="Label" parent="View"]
 editor/display_folded = true
@@ -152,7 +158,7 @@ margin_right = 52.0
 margin_bottom = 64.0
 
 [node name="Handler" type="Node2D" parent="View/Money"]
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 
 [node name="Price" type="Label" parent="View"]
 editor/display_folded = true
@@ -162,7 +168,7 @@ margin_right = 870.0
 margin_bottom = 360.0
 
 [node name="Handler" type="Node2D" parent="View/Price"]
-script = ExtResource( 22 )
+script = ExtResource( 23 )
 
 [node name="Client Name" type="Label" parent="View"]
 editor/display_folded = true
@@ -172,11 +178,11 @@ margin_right = 748.117
 margin_bottom = 67.4792
 
 [node name="Handler" type="Node2D" parent="View/Client Name"]
-script = ExtResource( 23 )
+script = ExtResource( 24 )
 
 [node name="Header" type="Sprite" parent="View"]
 position = Vector2( 1038.17, 51.654 )
-texture = ExtResource( 24 )
+texture = ExtResource( 25 )
 
 [node name="LevelStart" type="Node2D" parent="View"]
 editor/display_folded = true
@@ -202,10 +208,10 @@ margin_left = 473.299
 margin_top = 432.91
 margin_right = 824.301
 margin_bottom = 625.91
-texture_normal = ExtResource( 25 )
+texture_normal = ExtResource( 26 )
 
 [node name="Handler" type="Node2D" parent="View/LevelStart/NextDayButton"]
-script = ExtResource( 26 )
+script = ExtResource( 27 )
 
 [node name="Day" type="Label" parent="View/LevelStart"]
 margin_left = 611.7
@@ -214,7 +220,7 @@ margin_right = 651.7
 margin_bottom = 321.036
 
 [node name="Handler" type="Node2D" parent="View/LevelStart/Day"]
-script = ExtResource( 20 )
+script = ExtResource( 21 )
 
 [node name="LevelEnd" type="Node2D" parent="View"]
 editor/display_folded = true
@@ -240,10 +246,10 @@ margin_left = 473.299
 margin_top = 432.91
 margin_right = 824.301
 margin_bottom = 625.91
-texture_normal = ExtResource( 25 )
+texture_normal = ExtResource( 26 )
 
 [node name="Handler" type="Node2D" parent="View/LevelEnd/NextDayButton"]
-script = ExtResource( 26 )
+script = ExtResource( 27 )
 
 [node name="Money" type="Label" parent="View/LevelEnd"]
 margin_left = 604.986
@@ -254,12 +260,12 @@ text = "Day Is Over
 "
 
 [node name="Handler" type="Node2D" parent="View/LevelEnd/Money"]
-script = ExtResource( 21 )
+script = ExtResource( 22 )
 
 [node name="Gun" type="Sprite" parent="View"]
 position = Vector2( 365.034, 258.864 )
 rotation = 0.761919
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 27 )
+texture = ExtResource( 28 )
 offset = Vector2( 77.8915, -314.193 )
-script = ExtResource( 28 )
+script = ExtResource( 29 )

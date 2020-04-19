@@ -12,5 +12,7 @@ func on_state_changed(state: Dictionary)-> void:
 
 
 func _draw():
+	var local_pos = _parent_node.position
 	for point in _tattoo:
-		draw_rect(Rect2(point - Vector2(4,4), Vector2(4,4)), Color(0, 0, 0))
+		var pos = point - local_pos
+		draw_rect(Rect2(pos - Vector2(4,4), Vector2(4,4)), Color(0, 0, 0))

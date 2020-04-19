@@ -15,7 +15,7 @@ func _ready():
 	_scoring = _parent_node.get_node("Scoring")
 	_start = _parent_node.get_node("LevelStart")
 	_end = _parent_node.get_node("LevelEnd")
-	_client = _parent_node.get_node("Client")
+	_client = _parent_node.get_node("ClientContainer")
 
 
 func on_state_changed(state: Dictionary)-> void:
