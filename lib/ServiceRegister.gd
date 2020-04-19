@@ -13,6 +13,11 @@ func register(name, service):
 			listener.call_func(service)
 
 
+func clear():
+	_listeners = {}
+	_services = {}
+
+
 func get(name):
 	return _services.get(name)
 

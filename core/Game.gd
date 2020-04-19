@@ -7,7 +7,8 @@ const MAX_MONEY = 800
 const SEC_PER_HOUR = 60  # Time dilation!
 const CLOCK_SPEED = 5
 const DAY_START = 10 * SEC_PER_HOUR
-const DAY_END = 20 * SEC_PER_HOUR
+const DAY_END = 10.2 * SEC_PER_HOUR
+const TOTAL_DAYS = 2
 
 var _gun_on: bool = false
 var _mouse_position: Vector2 = Vector2(0, 0)
@@ -196,12 +197,15 @@ func handle_finish_tattoo(payload: Dictionary)-> void:
 		var pc = float(correct) / float(total_pixels)
 		_score =  pc * 100
 		_money += pc * _tattoo_price
+	else:
+		_score = 0
 
 
 func handle_next_client(payload: Dictionary)-> void:
 	if _current_tattoo.size() > 0:
 		_previous_clients.push_back(_current_tattoo)
 		_current_tattoo = []
+		_current_tattoo_image = null
 	_choose_tattoo()
 	_state = "tattooing"
 
@@ -211,6 +215,10 @@ func handle_next_day(payload: Dictionary)-> void:
 	match _state:
 		"end":
 			_day += 1
+			if _day > TOTAL_DAYS:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				ServiceRegister.clear()
+				SceneSwitcher.goto_scene("res://scenes/End.tscn")
 			_state = "start"
 			_reset()
 
