@@ -188,6 +188,7 @@ texture_hover = ExtResource( 16 )
 script = ExtResource( 17 )
 
 [node name="Scoring" type="Node2D" parent="View"]
+visible = false
 
 [node name="Paper" type="Sprite" parent="View/Scoring"]
 position = Vector2( 172.947, 379.215 )
@@ -235,10 +236,10 @@ scale = Vector2( 1, 1.22346 )
 texture = ExtResource( 9 )
 
 [node name="Time" type="Label" parent="View"]
-margin_left = 21.1552
-margin_top = 174.237
-margin_right = 85.1552
-margin_bottom = 214.237
+margin_left = 15.9858
+margin_top = 167.775
+margin_right = 79.9858
+margin_bottom = 207.775
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "10:00"
