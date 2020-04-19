@@ -42,7 +42,6 @@ func _init(state: Dictionary)-> void:
 	_tattoo_price = state.get("tattoo_price", MIN_MONEY)
 	_tattoos = state.get("tattoos", _get_tattoos())
 	_client_info = state["client"]
-	print(_client_info)
 	_choose_tattoo()
 	_set_time_display()
 
@@ -80,7 +79,6 @@ func _choose_tattoo():
 
 	_tattoo_price = round(rand_range(MIN_MONEY, MAX_MONEY))
 	_client_name = Names.get_name()
-	print(_client_name)
 
 	return tat
 
@@ -211,7 +209,6 @@ func handle_next_client(payload: Dictionary)-> void:
 
 
 func handle_next_day(payload: Dictionary)-> void:
-	print(_state)
 	match _state:
 		"end":
 			_day += 1
