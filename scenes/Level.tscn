@@ -127,7 +127,7 @@ script = ExtResource( 18 )
 [node name="Gun" type="Sprite" parent="View"]
 position = Vector2( 447.008, 206.798 )
 rotation = 0.761919
-scale = Vector2( 0.488921, 0.488921 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 19 )
 
 [node name="Time" type="Label" parent="View"]
