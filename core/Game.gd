@@ -177,8 +177,8 @@ func handle_finish_tattoo(payload: Dictionary)-> void:
 			image.lock()
 			var x = point.x - lowest.x
 			var y = point.y - lowest.y
-			for xs in range(x, x+2):
-				for ys in range(y, y+2):
+			for xs in range(x, x+8):
+				for ys in range(y, y+8):
 					if xs < width + 1 and ys < height + 1:
 						image.set_pixel(xs, ys, Color(0,0,0,255))
 
