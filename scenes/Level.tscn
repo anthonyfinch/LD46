@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://core/Input.gd" type="Script" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://fonts/cute.tres" type="DynamicFontData" id=30]
 [ext_resource path="res://components/gun.png" type="Texture" id=31]
 [ext_resource path="res://components/Gun.gd" type="Script" id=32]
+[ext_resource path="res://components/MainCamera.gd" type="Script" id=33]
 
 [sub_resource type="DynamicFont" id=4]
 size = 52
@@ -359,3 +360,10 @@ scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 31 )
 offset = Vector2( 77.8915, -314.193 )
 script = ExtResource( 32 )
+
+[node name="MainCamera" type="Camera2D" parent="View"]
+position = Vector2( 640, 360 )
+current = true
+
+[node name="Node2D" type="Node2D" parent="View/MainCamera"]
+script = ExtResource( 33 )
