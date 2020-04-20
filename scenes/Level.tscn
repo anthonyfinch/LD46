@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://scenes/Level.gd" type="Script" id=1]
 [ext_resource path="res://core/Input.gd" type="Script" id=2]
@@ -32,17 +32,27 @@
 [ext_resource path="res://fonts/cute.tres" type="DynamicFontData" id=30]
 [ext_resource path="res://components/gun.png" type="Texture" id=31]
 [ext_resource path="res://components/Gun.gd" type="Script" id=32]
-[ext_resource path="res://components/MainCamera.gd" type="Script" id=33]
+[ext_resource path="res://components/inkdrop.png" type="Texture" id=33]
+[ext_resource path="res://components/InkDrops.gd" type="Script" id=34]
+[ext_resource path="res://components/MainCamera.gd" type="Script" id=35]
+
+[sub_resource type="DynamicFont" id=1]
+size = 52
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 52
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 45
+font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 52
+size = 45
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 52
-font_data = ExtResource( 12 )
-
-[sub_resource type="DynamicFont" id=9]
 size = 45
 font_data = ExtResource( 12 )
 
@@ -51,23 +61,15 @@ size = 45
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 45
-font_data = ExtResource( 12 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 45
-font_data = ExtResource( 12 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 56
 font_data = ExtResource( 30 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=8]
 size = 44
 extra_spacing_char = -1
 font_data = ExtResource( 30 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=9]
 size = 40
 font_data = ExtResource( 30 )
 
@@ -144,7 +146,7 @@ margin_top = -1.2818
 margin_right = -90.9643
 margin_bottom = 44.7182
 rect_rotation = -14.5569
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Client Name: Bill"
 
@@ -158,7 +160,7 @@ margin_top = 57.444
 margin_right = -173.804
 margin_bottom = 103.444
 rect_rotation = -16.2665
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Price: £40"
 
@@ -171,7 +173,7 @@ margin_top = -74.412
 margin_right = 175.226
 margin_bottom = -28.412
 rect_rotation = -18.5124
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Design:"
 
@@ -189,6 +191,7 @@ texture_hover = ExtResource( 16 )
 script = ExtResource( 17 )
 
 [node name="Scoring" type="Node2D" parent="View"]
+editor/display_folded = true
 visible = false
 
 [node name="Paper" type="Sprite" parent="View/Scoring"]
@@ -207,7 +210,7 @@ margin_left = 205.969
 margin_top = 539.871
 margin_right = 553.969
 margin_bottom = 622.871
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "SCORE: 2/3
 "
@@ -237,11 +240,12 @@ scale = Vector2( 1, 1.22346 )
 texture = ExtResource( 9 )
 
 [node name="Time" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 15.9858
 margin_top = 167.775
 margin_right = 79.9858
 margin_bottom = 207.775
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "10:00"
 
@@ -249,11 +253,12 @@ text = "10:00"
 script = ExtResource( 23 )
 
 [node name="Day" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 18.3248
 margin_top = 121.314
 margin_right = 83.3248
 margin_bottom = 161.314
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Day 1"
 
@@ -261,11 +266,12 @@ text = "Day 1"
 script = ExtResource( 24 )
 
 [node name="Money" type="Label" parent="View"]
+editor/display_folded = true
 margin_left = 14.9594
 margin_top = 72.7612
 margin_right = 127.959
 margin_bottom = 112.761
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Money: 0"
 
@@ -304,7 +310,7 @@ margin_left = 555.973
 margin_top = 224.772
 margin_right = 673.973
 margin_bottom = 287.772
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 7 )
 text = "Day 1"
 
 [node name="Handler" type="Node2D" parent="View/LevelStart/Day"]
@@ -326,7 +332,7 @@ margin_left = 419.32
 margin_top = 257.302
 margin_right = 825.32
 margin_bottom = 360.302
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 8 )
 text = "Another Day is DONE...."
 
 [node name="NextDayButton" type="TextureButton" parent="View/LevelEnd"]
@@ -346,7 +352,7 @@ margin_left = 509.792
 margin_top = 338.89
 margin_right = 715.792
 margin_bottom = 433.89
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 9 )
 text = "Day Is Over
 "
 
@@ -354,6 +360,7 @@ text = "Day Is Over
 script = ExtResource( 25 )
 
 [node name="Gun" type="Sprite" parent="View"]
+editor/display_folded = true
 position = Vector2( 365.034, 258.864 )
 rotation = 0.761919
 scale = Vector2( 0.3, 0.3 )
@@ -361,9 +368,25 @@ texture = ExtResource( 31 )
 offset = Vector2( 77.8915, -314.193 )
 script = ExtResource( 32 )
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="View/Gun"]
+rotation = 1.63399
+scale = Vector2( 8, 8 )
+emitting = false
+explosiveness = 0.27
+randomness = 0.5
+texture = ExtResource( 33 )
+spread = 46.16
+angular_velocity = 297.29
+radial_accel = 58.07
+radial_accel_random = 0.52
+
+[node name="Handler" type="Node2D" parent="View/Gun/CPUParticles2D"]
+script = ExtResource( 34 )
+
 [node name="MainCamera" type="Camera2D" parent="View"]
+editor/display_folded = true
 position = Vector2( 640, 360 )
 current = true
 
 [node name="Node2D" type="Node2D" parent="View/MainCamera"]
-script = ExtResource( 33 )
+script = ExtResource( 35 )
