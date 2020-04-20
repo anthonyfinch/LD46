@@ -54,7 +54,7 @@ static func get_name():
 		"Towanda"
 		]
 
-	var idx = round(rand_range(0, names.size()))
+	var idx = round(rand_range(0, names.size()-1))
 	return names[idx]
 
 
